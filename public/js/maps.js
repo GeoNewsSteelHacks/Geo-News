@@ -1,5 +1,7 @@
 var map;
 var initialLocation;
+var cities;
+
 function initialize() {
 
     // INIT BASED OFF LOCATION
@@ -17,7 +19,7 @@ function initialize() {
     map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
     
     // DRAW THE CIRCLES FOR CITIES
-   var cities={
+   cities={
 
         pittsburgh:{
             center:{lat: 40.4397, lng: -79.9764},
@@ -54,10 +56,64 @@ function initialize() {
         },
         charlotte:{
             center:{lat: 35.2269, lng: -80.8433}
+        },
+        denver:{
+            center:{lat: 39.7392, lng: -104.9903}
+        },
+        newark:{
+            center:{lat: 40.7242, lng: -74.1726}
+        },
+        tucson:{
+            center:{lat: 32.2217, lng: -110.9264}
+        },
+        elPaso:{
+            center:{lat: 31.7903, lng: -106.4233}
+        },
+        miami:{
+            center:{lat: 25.7753, lng: -80.2089}
+        },
+        newOrleans:{
+            center:{lat: 29.9500, lng: -90.0667}
+        },
+        chicago:{
+            center:{lat: 41.8369, lng: -87.6847}
+        },
+        phoenix:{
+            center:{lat: 33.4500, lng: -112.0667} 
+        },
+        la:{
+            center:{lat: 34.0500, lng: -118.2500}
+        },
+        seattle:{
+            center:{lat: 47.6097, lng: -122.3331}
+        },
+        oklahoma:{
+            center:{lat: 35.4822, lng: -97.5350}
+        },
+        philadelphia:{
+            center:{lat: 39.9500, lng: -75.1667}
+        },
+        dallas:{
+            center:{lat: 32.7767, lng: -96.7970}
+        },
+        columbus:{
+            center:{lat: 39.9833, lng: -82.9833}
+        },
+        vegas:{
+            center:{lat: 36.1215, lng: -115.1739}
+        },
+        albuquerque:{
+            center:{lat: 35.1107, lng: -106.6100}
+        },
+        detroit:{
+            center:{lat: 42.3314, lng: -83.0458}
+        },
+        saltLake:{
+            center:{lat: 40.7500, lng: -111.8833}
+        },
+        portland:{
+            center:{lat: 45.5200, lng: -122.6819}
         }
-    
-    
-    
     };
     
     for (var city in cities) {
@@ -70,12 +126,74 @@ function initialize() {
                 fillOpacity: 0.35,
                 map: map,
                 center: cities[city].center,
-                radius: 100000
+                radius: 85000
               });
+              google.maps.event.addListener(cityCircle, 'click', function(e) {
+            alert('clicked')
+            infoWindow.setPosition(e.latLng);
+            infoWindow.open(map);
+        });
     }
 
+    var infoWindow = new google.maps.InfoWindow({
+        
+        content: "<div>Hello! World</div>",
+        maxWidth: 500
+    });
+    
     
 }
 google.maps.event.addDomListener(window, 'load', initialize);
 
+//calculates distance between two points in km's
+function calcDistance(p1, p2){
+  return (google.maps.geometry.spherical.computeDistanceBetween(p1, p2) / 1000).toFixed(2);
+}
 
+function findAdjCities(){
+    
+    var allCitiesString = "pittsburgh | new york city | boston | washington dc | baltimore"
+    
+    for(var city in cities){
+        var origin = cities[city],
+        destination = allCitiesString,
+        service = new google.maps.DistanceMatrixService();
+    }
+    
+    service.getDistanceMatrix(
+    {
+        origins: [origin],
+        destinations: [destination],
+        travelMode: google.maps.TravelMode.DRIVING,
+        avoidHighways: false,
+        avoidTolls: false
+    },
+    callback
+    );
+    
+    
+    
+    
+}
+
+
+function callback(response, status) {
+  if (status == google.maps.DistanceMatrixStatus.OK) {
+    var origins = response.originAddresses;
+    var destinations = response.destinationAddresses;
+
+    for (var i = 0; i < origins.length; i++) {
+      var results = response.rows[i].elements;
+      for (var j = 0; j < results.length; j++) {
+        var element = results[j];
+        var distance = element.distance.text;
+        var duration = element.duration.text;
+        if(distance >= 190){
+            alert(element);
+        }
+        var from = origins[i];
+        var to = destinations[j];
+      }
+    }
+  }
+}
