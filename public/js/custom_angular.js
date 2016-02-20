@@ -1,5 +1,20 @@
 var app = angular.module('app', []);
 
+app.controller('MainCtrl', function($scope, $http){
+	$http.get('/locations.js')
+		.success(function($scope, response) {
+			$scope.location = response.responseObject{
+				title: 
+				description:
+				siteURL:
+			};
+		});
+		.error(function(data){
+			console.log('Error: ' + data);
+		});
+}
+
+
 app.config(function (uiGmapGoogleMapApiProvider) {
     uiGmapGoogleMapApiProvider.configure({
         key: '',
@@ -14,8 +29,8 @@ app.controller('MainCtrl', function ($scope, uiGmapGoogleMapApi, uiGmapIsReady) 
         $scope.googlemap = {};
         $scope.map = {
             center: {
-                latitude: $scope.latitude
-                longitude: $scope.longitude
+                latitude: $scope.latitude;
+                longitude: $scope.longitude;
             },
             zoom: 5,
             pan: 1,
@@ -40,8 +55,8 @@ uiGmapIsReady.promise() // if no value is put in promise() it defaults to promis
 $scope.markers = [{
         id: 0,
         coords: {
-            latitude: //location
-            longitude: 
+            latitude: $scope.latitude;
+            longitude: $scope.longitude;
         },
         data: //news?
     }];
@@ -75,17 +90,3 @@ $scope.MapOptions = {
             }]
     };
 
-
-function mainController($scope, $http){
-	$http.get('/location')
-		.success(function($scope) {
-			$scope.SanFran{
-				title: 
-				description:
-				siteURL:
-			}
-		})
-		.error(function(data){
-			console.log('Error: ' + data);
-		})
-}
