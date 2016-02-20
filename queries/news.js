@@ -4,7 +4,7 @@ var webhose = require('webhose-nodejs');
 
 
 
-function getNews(city) {
+module.exports = function (city) {
 	var q = city; //need to find good query terms
 	
 	var options = {
