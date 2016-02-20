@@ -1,19 +1,16 @@
 var app = angular.module('app', []);
 
 app.controller('MainCtrl', function($scope, $http){
-	$http.get('/locations.js')
+	$http.get('/location')
 		.success(function($scope, response) {
-			$scope.location = response.responseObject{
-				title: 
-				description:
-				siteURL:
-			};
+			$scope.location.title = response.responseObject.title;
+			$scope.location.description = response.responseObject.description;
+			$scope.location.url = response.responseObject.description;
 		});
 		.error(function(data){
 			console.log('Error: ' + data);
 		});
-}
-
+};
 
 app.config(function (uiGmapGoogleMapApiProvider) {
     uiGmapGoogleMapApiProvider.configure({
@@ -29,9 +26,9 @@ app.controller('MainCtrl', function ($scope, uiGmapGoogleMapApi, uiGmapIsReady) 
         $scope.googlemap = {};
         $scope.map = {
             center: {
-                latitude: $scope.latitude;
-                longitude: $scope.longitude;
-            },
+                latitude: $scope.latitude,
+                longitude: $scope.longitude
+            };
             zoom: 5,
             pan: 1,
             options: $scope.mapOptions,
