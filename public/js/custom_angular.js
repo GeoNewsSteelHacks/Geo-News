@@ -14,8 +14,8 @@ app.controller('MainCtrl', function ($scope, uiGmapGoogleMapApi, uiGmapIsReady) 
         $scope.googlemap = {};
         $scope.map = {
             center: {
-                latitude: //computer location?
-                longitude: //computer location?
+                latitude: $scope.latitude
+                longitude: $scope.longitude
             },
             zoom: 5,
             pan: 1,
