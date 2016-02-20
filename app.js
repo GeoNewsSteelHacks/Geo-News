@@ -9,7 +9,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
+var locations = require('./routes/locations');
 
 var app = express();
 
@@ -22,7 +22,10 @@ app.use(bodyParser.json());                                     // parse applica
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
 app.use(methodOverride());
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 11e6154166813958c05fd34c7c98a6f09c111e5b
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -36,7 +39,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
+app.use('/location', locations);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
