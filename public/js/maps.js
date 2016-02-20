@@ -52,11 +52,15 @@ function initialize() {
         });
         // event handler for click
         google.maps.event.addListener(cityCircle[index], 'click', function(t){
-            
-            // TODO
+           $(document).ready(function(){
+
+                $("#panel").text("Hello world!");
+
+   
+            });
         });
         
-
+        
         index++;
     }
     
