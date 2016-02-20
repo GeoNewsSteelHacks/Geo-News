@@ -1,20 +1,26 @@
+var geocoder;
+var map;
+var address = 'houston';
+
 function initialize() {
-    var geocoder = new google.maps.Geocoder();
-    var address = "pittsburgh";
-    
+    geocoder = new google.maps.Geocoder();
     geocoder.geocode( { 'address': address}, function(results, status) {
-    
-    if (status == google.maps.GeocoderStatus.OK) {
-        var latitude = results[0].geometry.location.latitude;
-        var longitude = results[0].geometry.location.longitude;
-        alert(latitude);
-        } 
+      if (status == google.maps.GeocoderStatus.OK) {
+        map.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+        });
+      }
     });
-    var mapProp = {
-        center:new google.maps.LatLng(40.440625,-79.995886),
-        zoom:10,
-        mapTypeId:google.maps.MapTypeId.ROADMAP
-    };
-    var map=new google.maps.Map(document.getElementById("map-canvas"),mapProp);
+    var latlng = new google.maps.LatLng(-34.397, 150.644);
+    var mapOptions = {
+      zoom: 12,
+      center: latlng
+    }
+    
+    map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+    
 }
 google.maps.event.addDomListener(window, 'load', initialize);
