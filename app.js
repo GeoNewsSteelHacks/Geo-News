@@ -7,7 +7,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
-var webhose = require('webhose');
+
 
 var routes = require('./routes/index');
 var locations = require('./routes/locations');
