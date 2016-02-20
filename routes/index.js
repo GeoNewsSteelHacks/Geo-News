@@ -6,11 +6,4 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Geo News' });
 });
 
-router.get('/location', function(req, res, next) {
-    res.json({SanFran : { title : "News Story",
-                          description : "There's News!",
-                          siteURL : "https://www.google.com"
-    }});
-});
-
 module.exports = router;
