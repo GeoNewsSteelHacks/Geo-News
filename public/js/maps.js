@@ -128,6 +128,28 @@ function initialize() {
                 center: cities[city].center,
                 radius: 85000
               });
+              if(map.getZoom() >11){
+                  var cityCircle = new google.maps.Circle({
+                strokeColor: '#FF0000',
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: '#FF0000',
+                fillOpacity: 0.35,
+                map: map,
+                center: cities['nyc'].center,
+                radius: 850
+                });
+                var cityCircle = new google.maps.Circle({
+                strokeColor: '#FF0000',
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: '#FF0000',
+                fillOpacity: 0.35,
+                map: map,
+                center: cities['newark'].center,
+                radius: 850
+                });
+              }
               google.maps.event.addListener(cityCircle, 'mouseover', function(e) {
             
             infoWindow.setPosition(e.latLng);
