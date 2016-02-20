@@ -9,7 +9,6 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
 var locations = require('./routes/locations');
 
 var app = express();
@@ -22,8 +21,6 @@ app.use(bodyParser.urlencoded({'extended':'true'}));            // parse applica
 app.use(bodyParser.json());                                     // parse application/json
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
 app.use(methodOverride());
-
-app.listen(8080);//just listening to 8080 for now
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -39,7 +36,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/location', locations);
-app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
