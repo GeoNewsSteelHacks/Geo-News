@@ -1,5 +1,12 @@
+html {
+  height: 100%;
+}
+
 body {
-  padding: 50px;
+  height: 100%;
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -7,6 +14,15 @@ a {
   color: #00B7FF;
 }
 
+.container{
+  margin: 15px !important;
+  width: 95% !important;
+}
+
 #map-canvas{
-  height:100vh;
+  height: 95vh;
+}
+
+#feed-canvas{
+  
 }
