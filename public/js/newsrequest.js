@@ -8,3 +8,5 @@ function newsRequest(locationName){
 				+ '<p>' + data[i].url + '</p>' + '</div>'
 			}
 	}
+
+
