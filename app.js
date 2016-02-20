@@ -22,10 +22,6 @@ app.use(bodyParser.json());                                     // parse applica
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
 app.use(methodOverride());
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 11e6154166813958c05fd34c7c98a6f09c111e5b
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
