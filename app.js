@@ -1,15 +1,29 @@
 var express = require('express');
+var mongoose = require('mongoose');
+var morgan = require('morgan');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var locations = require('./routes/locations');
 
 var app = express();
+
+//db config
+//mongoose.connect(what database, man?);
+app.use(express.static(__dirname + '/public'));                 // set the static files location /public/img will be /img for users
+app.use(morgan('dev'));                                         // log every request to the console
+app.use(bodyParser.urlencoded({'extended':'true'}));            // parse application/x-www-form-urlencoded
+app.use(bodyParser.json());                                     // parse application/json
+app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
+app.use(methodOverride());
+
+app.listen(8080);//just listening to 8080 for now
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
