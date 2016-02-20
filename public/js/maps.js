@@ -128,8 +128,8 @@ function initialize() {
                 center: cities[city].center,
                 radius: 85000
               });
-              google.maps.event.addListener(cityCircle, 'click', function(e) {
-            alert('clicked')
+              google.maps.event.addListener(cityCircle, 'mouseover', function(e) {
+            
             infoWindow.setPosition(e.latLng);
             infoWindow.open(map);
         });
@@ -137,7 +137,7 @@ function initialize() {
 
     var infoWindow = new google.maps.InfoWindow({
         
-        content: "<div>Hello! World</div>",
+        content: "<div>Click to see news from this region!</div>",
         maxWidth: 500
     });
     
