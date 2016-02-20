@@ -12,6 +12,7 @@ module.exports = function (city) {
 	language: 'english',
 	thread.country: 'US',
 	site_type: 'news',
+	size: 10,		// returns 10 stories
 	location: city,
 	}
 	
