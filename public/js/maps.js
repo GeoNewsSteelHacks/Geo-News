@@ -24,11 +24,9 @@ function initialize() {
 
     zoom = map.getZoom();
     // DRAW THE CIRCLES FOR CITIES
-
-    cities = smallCircles();
-
-
-   cities= cityCenters();
+    
+       
+     cities= cityCenters();
     
 
     for (var city in cities) {
@@ -43,10 +41,13 @@ function initialize() {
             center: cities[city].center,
             radius: radius
         });
+        // event handler for hover
         google.maps.event.addListener(cityCircle[index], 'mouseover', function(e) {
             infoWindow.setPosition(e.latLng);
             infoWindow.open(map);
         });
+
+        
         index++;
     }
     
@@ -75,10 +76,4 @@ function initialize() {
 
     });
 }
-    
-   
-
-
-
-
 google.maps.event.addDomListener(window, 'load', initialize);
