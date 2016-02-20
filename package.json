@@ -4,7 +4,7 @@
   "private": true,
   "main": "app.js",
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "WEBHOSE_TOKEN=3903271a-d7b5-4221-90c7-bc68fc7d1cb2 WEBHOSE_URI=https://webhose.io/search node ./bin/www"
   },
   "dependencies": {
     "body-parser": "~1.13.1",
