@@ -46,8 +46,17 @@ function initialize() {
             infoWindow.setPosition(e.latLng);
             infoWindow.open(map);
         });
-
+        google.maps.event.addListener(cityCircle[index], 'mouseout', function(e){
         
+            infoWindow.close(map);
+        });
+        // event handler for click
+        google.maps.event.addListener(cityCircle[index], 'click', function(t){
+            
+            // TODO
+        });
+        
+
         index++;
     }
     
