@@ -19,7 +19,7 @@ function initialize() {
     map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
     
     // DRAW THE CIRCLES FOR CITIES
-   cities= smallCircles();
+   cities= cityCenters();
     
     for (var city in cities) {
               // Add the circle for this city to the map.
