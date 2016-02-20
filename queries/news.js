@@ -5,11 +5,12 @@ var webhose = require('webhose-nodejs');
 
 
 function getNews(city) {
-	var q = 'Insert query here'; //need to find good query terms
+	var q = city; //need to find good query terms
 	
 	var options = {
 	format: 'json',
 	language: 'english',
+	thread.country: 'US',
 	site_type: 'news',
 	location: city,
 	}
