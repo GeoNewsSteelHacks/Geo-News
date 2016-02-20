@@ -1,4 +1,4 @@
-function smallCircles(){
+function cityCenters(){
     return {
         pittsburgh:{
             center:{lat: 40.4397, lng: -79.9764},
