@@ -7,6 +7,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
+var webhose = require('webhose');
 
 var routes = require('./routes/index');
 var locations = require('./routes/locations');
@@ -14,7 +15,7 @@ var locations = require('./routes/locations');
 var app = express();
 
 //db config
-//mongoose.connect(what database, man?);
+//mongoose.connect(what database, man?); -- RIP to GeoDB
 app.use(express.static(__dirname + '/public'));                 // set the static files location /public/img will be /img for users
 app.use(morgan('dev'));                                         // log every request to the console
 app.use(bodyParser.urlencoded({'extended':'true'}));            // parse application/x-www-form-urlencoded
