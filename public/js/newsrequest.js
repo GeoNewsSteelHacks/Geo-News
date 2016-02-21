@@ -14,7 +14,7 @@ function clearSidePannel(){
 
 function getLocationStories(locationName){
 	$.get("/location", {location:locationName}, function(response){
-		clearSidePannel();
+		clearSidePannel(); 
 		populateSidePannel(response.name);
 	})
 }
