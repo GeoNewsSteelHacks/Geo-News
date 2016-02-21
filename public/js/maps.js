@@ -27,9 +27,14 @@ function initialize() {
     google.maps.event.addDomListener(map, 'zoom_changed', function(f) {
 
         if (map.getZoom() < 5) {
+<<<<<<< HEAD
             for (var z in cityCircle) {
                 cityCircle[z].setMap(null)
                 cityCircle[z] = null
+=======
+            for (var r in cityCircle) {
+                cityCircle[r].setVisible(false);
+>>>>>>> cd7cae3338134da11b2aec0c027cdc4bc7a43ea5
             }
 
             drawFusionLayer('1H1Ee3_2xX7wr25WNRWs3uXyGLzTtjxnDUUMrozWt');
@@ -38,9 +43,13 @@ function initialize() {
         else if (map.getZoom() >= 5) {
             
             for (var z in cityCircle) {
+<<<<<<< HEAD
                 cityCircle[z].setMap(null)
+=======
+                cityCircle[z].setMap(null);
+>>>>>>> cd7cae3338134da11b2aec0c027cdc4bc7a43ea5
             }
-            drawCircles()
+            drawCircles();
 
 
         }
