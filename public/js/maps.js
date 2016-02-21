@@ -30,7 +30,7 @@ function initialize() {
 
         if (map.getZoom() < 5) {
             for (var r in cityCircle) {
-                cityCircle[r].setVisible(false)
+                cityCircle[r].setVisible(false);
             }
 
             drawFusionLayer('1H1Ee3_2xX7wr25WNRWs3uXyGLzTtjxnDUUMrozWt');
@@ -38,10 +38,9 @@ function initialize() {
         }
         else if (map.getZoom() >= 5) {
             for (var z in cityCircle) {
-                cityCircle[z].setMap(null)
-                cityCircle[z] = null
+                cityCircle[z].setMap(null);
             }
-            drawCircles()
+            drawCircles();
 
 
         }
