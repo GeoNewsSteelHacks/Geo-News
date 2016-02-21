@@ -54,7 +54,7 @@ function initialize() {
         google.maps.event.addListener(cityCircle[index], 'click', function(t){
            $(document).ready(function(){
 
-                $("#panel").text("Hello world!");
+                getLocationStories('string');
 
    
             });
