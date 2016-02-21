@@ -95,7 +95,7 @@ function drawCircles() {
             // event handler for click
         google.maps.event.addListener(cityCircle[index], 'click', function(t) {
             $(document).ready(function() {
-                
+                getLocationStories('string');
             });
         });
         index++;
