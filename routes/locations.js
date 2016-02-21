@@ -4,7 +4,7 @@ var router = express.Router();
 
 var queryHandler = require('../helpers/newsQueries.js');
 var queryTest = require('../helpers/newsQueriesTest.js');
-
+var unirest = require('unirest')
 /* GET home page. */
 router.get('/', function(req, res, next) {
     
