@@ -46,8 +46,8 @@ router.get('/', function(req, res, next) {
             url : "Story 2 url"
         }]
     }
-    
-    res.send(responseObject); // sending well formatted dummy for now
+    // *** OLD DUMMY OUTPUT ***
+   // res.send(responseObject); // sending well formatted dummy for now
     
     // Justin's api query function
     router.get('/', function(req, res, next) {
@@ -84,7 +84,7 @@ router.get('/', function(req, res, next) {
     	while (result.next){
 	    	unirest.get(result.next);
 	    }
-        console.log(result.status, result.headers, result.body);
+        res.send(result.status, result.headers, result.body);
     });
 	
 });
