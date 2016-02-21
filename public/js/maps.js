@@ -95,7 +95,7 @@ function drawCircles() {
             // event handler for click
         google.maps.event.addListener(cityCircle[index], 'click', function(t) {
             $(document).ready(function() {
-                getLocationStories('string');
+                getCityStories('string');
             });
         });
         index++;
@@ -155,8 +155,8 @@ function drawFusionLayer(fusionTable) {
         }
     });
     google.maps.event.addListener(layer, 'click', function(z) {
-        var test = z.row['GEOID'].value;   
-           
+        var geoID = z.row['GEOID'].value;   
+        getRegionStories(geoID);
     });
 
 

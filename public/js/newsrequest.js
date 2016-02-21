@@ -12,7 +12,7 @@ function clearSidePannel(){
 	$("#panel").html("");
 }
 
-function getLocationStories(locationName){
+function getCityStories(locationName){
 	$.get("/location", {location:locationName}, function(response){
 		clearSidePannel(); 
 		populateSidePannel(response.name);
