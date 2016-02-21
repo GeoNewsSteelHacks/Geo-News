@@ -145,7 +145,7 @@ function drawFusionLayer(fusionTable) {
 
         }],
 
-        suppressInfoWindows : true
+        //suppressInfoWindows : true
     });
     layer.setMap(map);
     currentOverlay = map;
