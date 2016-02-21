@@ -1,9 +1,9 @@
 function populateSidePannel(locationStories){
 	for(var i = 0; i < locationStories.length; i++){
 		var elementContainer = '<div class="storybox">' 
-			+ '<h1 style="margin-top: 0; margin-bottom: 1; padding:0;">' + locationStories[i].title + '</h1>'
+			+ '<h4 style="margin-top: 0; margin-bottom: 1; padding:0;">' + locationStories[i].title + '</h4>'
 			//+ '<p>' + locationStories[i].description + '</p>' 
-			+ '<a href=' + locationStories[i].url + '>'+ locationStories[i].url.toString() + '</>' + '</div>';
+			+ '<a href=' + locationStories[i].url + '>Click here for more!</>' + '</div>';
 		$("#panel").append(elementContainer);
 	}
 }
@@ -13,15 +13,27 @@ function clearSidePannel(){
 }
 
 function getRegionStories(regionID){
-	$.get("/location/region", {region:regionID}, function(response){
-		clearSidePannel();
-		populateSidePannel(response.name);
+	$.ajax({
+    type: 'GET',
+    url: '/location/region',
+    data: {
+    	region : regionID},
+    success: function(data) {
+	        clearSidePannel();
+	        populateSidePannel(data);
+	    }
 	});
 }
 
 function getCityStories(locationName){
-	$.get("/location/city", {location:locationName}, function(response){
-		clearSidePannel(); 
-		populateSidePannel(response.name);
+	$.ajax({
+    type: 'GET',
+    url: '/location/city',
+    data: {
+    	location : locationName},
+    success: function(data) {
+	        clearSidePannel();
+	        populateSidePannel(data);
+	    }
 	});
 }

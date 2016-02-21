@@ -12,3 +12,5 @@ function getRegionQueryString(regionID){
     };
     return regionDictionary[regionID];
 }
+
+module.exports = getRegionQueryString();
