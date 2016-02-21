@@ -1,12 +1,14 @@
 function newsRequest(locationName){
 	$.get("/location", {location:locationName}, function(data){
-		for(var i = 0; i < data.length; i++){
-			var elementContainer = '';
-			elementContainer = elementContainer + '<div>' 
-				+ '<h1>' + data[i].title + '</h1>'
+		//alert(data.name);
+		for(var i = 0; i < data.name.length; i++){
+			var elementContainer = '<div>' 
+				+ '<h1>' + data.name[i].title + '</h1>'
 				+ '<p>' + data[i].description + '</p>' 
-				+ '<p>' + data[i].url + '</p>' + '</div>'
-			}
-	}
-
+				+ '<a href='> + data[i].url + <'/>' + '</div>';
+			alert(elementContainer);
+			$("#panel").append(elementContainer);
+		};
+	});
+}
 
