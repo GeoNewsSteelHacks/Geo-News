@@ -64,11 +64,11 @@ router.get('/region', function(req, res, next) {
     request.header("Accept", "text/plain");	
     request.end(function (result) {
         //console.log(result.body);
-    	
+    	/*
     	request = unirest.get(baseURL + result.body.next);
     	request.header("Accept", "text/plain");
     	
-    	request.end(function(result){
+    	request.end(function(result){*/
             var len = result.body.posts.length;
             var posts = [];
             for(var i=1; i<11; i++){
@@ -80,7 +80,7 @@ router.get('/region', function(req, res, next) {
             }
             res.send(posts);
     	   // console.log(Object.getOwnPropertyNames(result.body))
-    	});
+    	//});
     });
 });
 
