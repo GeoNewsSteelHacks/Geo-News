@@ -1,10 +1,11 @@
-var map;
 var initialLocation;
 var cities;
 var cityCircle = new Array(35);
 var index = 0;
 var radius = 85000
-var zoom;
+var bermudaTriangle;
+var currentOverlay = null
+var map = undefined
 
 function initialize() {
 
@@ -22,7 +23,6 @@ function initialize() {
 
     map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 
-    zoom = map.getZoom();
     // DRAW THE CIRCLES FOR CITIES
     
        
@@ -72,21 +72,98 @@ function initialize() {
 
 
     google.maps.event.addDomListener(map, 'zoom_changed', function(f) {
+      
+        if (map.getZoom() < 5) {
+            for(var r in cityCircle){
+                cityCircle[r].setVisible(false)
+            }
+            var eastCoords = [
+            {lat:35.0041, lng:-88.1955},
+            {lat:34.9918, lng:-85.6068},
+            {lat:32.8404, lng:-85.1756},
+            {lat:32.2593, lng:-84.8927},
+            ];
+            bermudaTriangle = new google.maps.Polygon({
+                paths: eastCoords,
+                strokeColor: '#FF0000',
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: '#FF0000',
+                fillOpacity: 0.35
+            });
+            
+            bermudaTriangle.setMap(map);
 
-        if (zoom < 5) {
-            radius = radius;
+
+            
         }
-        else if (map.getZoom() > zoom) {
-            radius = radius / 2;
+        else if (map.getZoom() >= 5) {
+            bermudaTriangle.setMap(null)
+            for(var t in cityCircle){
+                cityCircle[t].setVisible(true)
+            }
+           
+            radius = 42500;
+            for (var k in cityCircle) {
+                cityCircle[k].setRadius(radius)
+            }
         }
-        else if (map.getZoom() < zoom) {
-            radius = radius * 2;
-        }
-        zoom = map.getZoom();
-        for (var i in cityCircle) {
-            cityCircle[i].setRadius(radius)
-        }
+        
+        
 
     });
 }
+
+      
+    function drawFusionLayer(fusionTable){
+        var layer = new google.maps.FusionTablesLayer({
+            query: {
+              select: '\'geometry\'',
+              from: fusionTable
+            },
+            styles: [{ where: "'style' = 0",
+                polygonOptions: {
+                    fillColor: '#FF0000'
+                }    
+                },{ where: "'style' = 1",
+                polygonOptions: {
+                    fillColor: '#FF7F00'
+                }    
+                },{ where: "'style' = 2",
+                polygonOptions: {
+                    fillColor: '#FFFF00'
+                }    
+                },{ where: "'style' = 3",
+                polygonOptions: {
+                    fillColor: '#00FF00'
+                }    
+                },{ where: "'style' = 4",
+                polygonOptions: {
+                    fillColor: '#0000FF'
+                }    
+                },{ where: "'style' = 5",
+                polygonOptions: {
+                    fillColor: '#4B0082'
+                }    
+                }]
+          });
+        layer.setMap(map);
+        currentOverlay = map;
+    }  
+    
+    drawFusionLayer('1H1Ee3_2xX7wr25WNRWs3uXyGLzTtjxnDUUMrozWt');
+    
+    google.maps.event.addListener(map, 'zoom_changed', function() {
+        if(map.getZoom() < 6){
+            currentOverlay.setMap(null);
+            drawFusionLayer('1H1Ee3_2xX7wr25WNRWs3uXyGLzTtjxnDUUMrozWt');
+        }else{
+            currentOverlay.setMap(null);
+            drawFusionLayer('1xdysxZ94uUFIit9eXmnw1fYc6VcQiXhceFd_CVKa');
+        }
+    });
+
 google.maps.event.addDomListener(window, 'load', initialize);
+
+
+
