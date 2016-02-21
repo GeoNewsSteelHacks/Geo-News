@@ -99,14 +99,7 @@ function drawCircles() {
             })
             // event handler for click
         google.maps.event.addListener(cityCircle[index], 'click', function(t) {
-            //alert(this.getCenter())
-           
-            alert(this.name)
-      
-        
-            $(document).ready(function() {
-                getCityStories('string');
-            });
+            getCityStories(this.name);
         });
         index++;
     }
