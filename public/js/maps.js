@@ -98,7 +98,9 @@ function drawCircles() {
                 openInfoBox = false;
             })
             // event handler for click
+           
         google.maps.event.addListener(cityCircle[index], 'click', function(t) {
+             $("#panelHead").text(this.name)
             getCityStories(this.name);
         });
         index++;
