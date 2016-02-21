@@ -14,18 +14,22 @@ function initialize() {
             map.setCenter(initialLocation);
         });
     }
-
+    
+    // SET DEFAULT MAP OPTIONS
     var mapOptions = {
         zoom: 5,
     }
 
+    // CREATE THE MAP
     map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 
     // DRAW THE CIRCLES FOR CITIES
     drawCircles();
 
+    // LISTENER FOR ZOOM CHANGE
     google.maps.event.addDomListener(map, 'zoom_changed', function(f) {
 
+        // SWITCH TO 'REGION VIEW' IF MAP ZOOM IS LOW
         if (map.getZoom() < 5) {
 
             for (var z in cityCircle) {
@@ -48,21 +52,18 @@ function initialize() {
 
                 }
             drawCircles();
-
-
         }
-
-
-
     });
 
 }
 
-
+// FUNCTION TO DRAW CIRCLES AROUND THE LOCATIONS
 function drawCircles() {
+    
     cities = cityCenters();
     var openInfoBox = false;
-
+    
+    // CREATE THE CIRCLES
     for (var city in cities) {
         // Add the circle for this city to the map.
         cityCircle[index] = new google.maps.Circle({
@@ -110,8 +111,9 @@ function drawCircles() {
 
 }
 
-
+// FUNCITON TO CREATE THE 'REGION VIEW'
 function drawFusionLayer(fusionTable) {
+    
     var layer = new google.maps.FusionTablesLayer({
         query: {
             select: '\'geometry\'',
@@ -158,12 +160,6 @@ function drawFusionLayer(fusionTable) {
         var geoID = z.row['GEOID'].value;   
         getRegionStories(geoID);
     });
-
-
 }
-
-
-
-
 
 google.maps.event.addDomListener(window, 'load', initialize);
