@@ -19,13 +19,13 @@ router.get('/', function(req, res, next) {
     	location: req.body.location
     };
     try{
-    webhose.search(q, ops, function(err, whRes){
-    	if(err){
-    		console.log(err);
-    		throw webHoseRequestException(err);
-    	}
-    	res.json(whRes.data);
-    });
+        webhose.search(q, ops, function(err, whRes){
+        	if(err){
+        		console.log(err);
+        		throw webHoseRequestException(err);
+        	}
+        	res.json(whRes.data);
+        });
         
     }catch(e){
         console.log(e);
