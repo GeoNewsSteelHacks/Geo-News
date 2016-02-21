@@ -16,6 +16,5 @@ function getCityStories(locationName){
 	$.get("/location", {location:locationName}, function(response){
 		clearSidePannel(); 
 		populateSidePannel(response.name);
-	})
+	});
 }
-    
