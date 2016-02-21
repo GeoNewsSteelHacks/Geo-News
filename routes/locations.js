@@ -24,11 +24,11 @@ router.get('/city', function(req, res, next) {
 router.get('/region', function(req, res, next) {
     var responseObject = {
         name : [{
-            title : "Story 1",
+            title : "Story 1 region",
             description : "Story 1 desc",
             url : "Story 1 url"
         },{
-            title : "Story 2",
+            title : "Story 2 region",
             description : "Story 2 desc",
             url : "Story 2 url"
         }]
