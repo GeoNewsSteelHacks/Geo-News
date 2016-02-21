@@ -8,6 +8,13 @@ function populateSidePannel(locationStories){
 	}
 }
 
+function getRegionStories(regionNumber){
+	$.get("/", {region:regionNumber}, function(response){
+		clearSidePannel();
+		populateSidePannel(reponse.name);
+	})
+}
+
 function clearSidePannel(){
 	$("#panel").html("");
 }
