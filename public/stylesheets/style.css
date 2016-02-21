@@ -19,8 +19,8 @@ a {
 }
 
 .container{
-  margin: 15px !important;
-  width: 95% !important;
+  
+  width: 100% !important;
 }
 
 .storybox{
@@ -45,5 +45,5 @@ a {
 }
 
 #feed-canvas{
- 
+
 }
