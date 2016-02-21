@@ -12,14 +12,15 @@ body {
 
 a {
   color: #00B7FF;
+  font-size: 150%;
 }
 
 .panel-body{
   overflow: scroll;
+  height : 90vh;
 }
 
 .container{
-  
   width: 100% !important;
 }
 
@@ -45,5 +46,5 @@ a {
 }
 
 #feed-canvas{
-
+  height: 95vh;
 }

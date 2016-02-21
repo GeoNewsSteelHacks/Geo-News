@@ -1,9 +1,9 @@
 function populateSidePannel(locationStories){
 	for(var i = 0; i < locationStories.length; i++){
 		var elementContainer = '<div class="storybox">' 
-			+ '<h4 style="margin-top: 0; margin-bottom: 1; padding:0;">' + locationStories[i].title + '</h4>'
+			+ '<a href=' + locationStories[i].url + '>' + locationStories[i].title + '</a>'
 			//+ '<p>' + locationStories[i].description + '</p>' 
-			+ '<a href=' + locationStories[i].url + '>Click here for more!</>' + '</div>';
+			//+ '<a href=' + locationStories[i].url + '>Click here for more!</>' + '</div>';
 		$("#panel").append(elementContainer);
 	}
 }
@@ -13,6 +13,9 @@ function clearSidePannel(){
 }
 
 function getRegionStories(regionID){
+	clearSidePannel();
+	$('#panelHead').text('Regional Stories : Region ' + regionID);
+	$('#panel').text('loading...');
 	$.ajax({
     type: 'GET',
     url: '/location/region',
@@ -26,6 +29,8 @@ function getRegionStories(regionID){
 }
 
 function getCityStories(locationName){
+	clearSidePannel();
+	$('#panel').text('loading...');
 	$.ajax({
     type: 'GET',
     url: '/location/city',
