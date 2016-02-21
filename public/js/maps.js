@@ -153,15 +153,7 @@ function initialize() {
     
     drawFusionLayer('1H1Ee3_2xX7wr25WNRWs3uXyGLzTtjxnDUUMrozWt');
     
-    google.maps.event.addListener(map, 'zoom_changed', function() {
-        if(map.getZoom() < 6){
-            currentOverlay.setMap(null);
-            drawFusionLayer('1H1Ee3_2xX7wr25WNRWs3uXyGLzTtjxnDUUMrozWt');
-        }else{
-            currentOverlay.setMap(null);
-            drawFusionLayer('1xdysxZ94uUFIit9eXmnw1fYc6VcQiXhceFd_CVKa');
-        }
-    });
+
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
