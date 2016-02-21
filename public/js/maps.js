@@ -76,7 +76,9 @@ function drawCircles() {
             fillOpacity: 0.35,
             map: map,
             center: cities[city].center,
-            radius: radius
+            radius: radius,
+            name: cities[city].name
+            
         });
 
         // event handler for hover
@@ -97,8 +99,11 @@ function drawCircles() {
             })
             // event handler for click
         google.maps.event.addListener(cityCircle[index], 'click', function(t) {
-            var latlng = this.getCenter();
-            getCity(latlng);
+            //alert(this.getCenter())
+           
+            alert(this.name)
+      
+        
             $(document).ready(function() {
                 getCityStories('string');
             });
@@ -166,19 +171,8 @@ function drawFusionLayer(fusionTable) {
     });
 }
 
-function getCity(latlng){
-    
-    geocoder = new google.maps.Geocoder();
-    
-    geocoder.geocode({'latLng': latlng}, function(results, status){
-        
-        if(status === google.maps.GeocoderStatus.OK){
-            if(results[1]){
-                alert(results[2].formattedAddress)
-            }
-            
-        }
-    });
-}
+
+
+
 
 google.maps.event.addDomListener(window, 'load', initialize);
