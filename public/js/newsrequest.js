@@ -12,7 +12,7 @@ function clearSidePannel(){
 	$("#panel").html("");
 }
 
-function getRegionStores(regionID){
+function getRegionStories(regionID){
 	$.get("/location/region", {region:regionID}, function(response){
 		clearSidePannel();
 		populateSidePannel(response.name);
