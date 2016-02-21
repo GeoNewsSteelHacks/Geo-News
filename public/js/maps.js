@@ -114,32 +114,32 @@ function drawFusionLayer(fusionTable) {
             from: fusionTable
         },
         styles: [{
-            where: "'style' = 0",
-            polygonOptions: {
-                fillColor: '#FF0000'
-            }
-        }, {
-            where: "'style' = 1",
+            where: "'GEOID' = 7",
             polygonOptions: {
                 fillColor: '#FF7F00'
             }
-        }, {
-            where: "'style' = 2",
+        },{
+            where: "'GEOID' = 9",
+            polygonOptions:{
+                fillColor: '#4B0082'
+            }
+        },{
+            where: "'GEOID' = 5",
             polygonOptions: {
                 fillColor: '#FFFF00'
             }
         }, {
-            where: "'style' = 3",
+            where: "'GEOID' = 3",
             polygonOptions: {
                 fillColor: '#00FF00'
             }
         }, {
-            where: "'style' = 4",
+            where: "'GEOID' = 4",
             polygonOptions: {
                 fillColor: '#0000FF'
             }
         }, {
-            where: "'style' = 5",
+            where: "'GEOID' = 2",
             polygonOptions: {
                 fillColor: '#4B0082'
             }
