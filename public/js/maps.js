@@ -8,16 +8,9 @@ var geocoder;
 
 function initialize() {
 
-    // INIT BASED OFF LOCATION
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-            map.setCenter(initialLocation);
-        });
-    }
-    
     // SET DEFAULT MAP OPTIONS
     var mapOptions = {
+        center : {lat: 39.0997, lng : -94.5783},
         zoom: 5,
     }
 
