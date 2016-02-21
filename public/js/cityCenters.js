@@ -39,9 +39,6 @@ function cityCenters(){
         denver:{
             center:{lat: 39.7392, lng: -104.9903}
         },
-        newark:{
-            center:{lat: 40.7242, lng: -74.1726}
-        },
         tucson:{
             center:{lat: 32.2217, lng: -110.9264}
         },
