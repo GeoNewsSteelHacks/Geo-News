@@ -12,6 +12,13 @@ function clearSidePannel(){
 	$("#panel").html("");
 }
 
+function getRegionStores(regionID){
+	$.get("/location/region", {region:regionID}, function(response){
+		clearSidePannel();
+		populateSidePannel(response.name);
+	});
+}
+
 function getCityStories(locationName){
 	$.get("/location/city", {location:locationName}, function(response){
 		clearSidePannel(); 
