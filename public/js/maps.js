@@ -145,11 +145,6 @@ function drawFusionLayer(fusionTable) {
             polygonOptions: {
                 fillColor: '#0000FF'
             }
-        }, {
-            where: "'GEOID' = 2",
-            polygonOptions: {
-                fillColor: '#4B0082'
-            }
         }]
     });
     layer.setMap(map);
@@ -158,6 +153,11 @@ function drawFusionLayer(fusionTable) {
         if (map.getZoom() >= 5) {
             layer.setMap(null)
         }
+    });
+    google.maps.event.addListener(layer, 'click', function(z) {
+        
+            var test = z.row['GEOID'].value;   
+            alert(test)
     });
 
 }
