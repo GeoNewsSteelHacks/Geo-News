@@ -156,8 +156,11 @@ function drawFusionLayer(fusionTable) {
     currentOverlay = map;
     google.maps.event.addListener(map, 'zoom_changed', function() {
         if (map.getZoom() >= 5) {
-            layer.setMap(null)
+            layer.setMap(null);
         }
+    });
+    google.maps.event.addListener(layer, 'click', function(){
+        //
     });
 
 }
