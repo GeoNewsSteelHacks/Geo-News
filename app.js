@@ -1,5 +1,4 @@
 var express = require('express');
-var mongoose = require('mongoose');
 var morgan = require('morgan');
 var path = require('path');
 var favicon = require('serve-favicon');

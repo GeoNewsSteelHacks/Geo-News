@@ -38,10 +38,9 @@ router.get('/', function(req, res, next) {
         }, etc. etc.]
     }
     */
-    
-    
+
     var responseObject = {
-        'LOCATION NAME' : [{
+        name : [{
             title : "Story 1",
             description : "Story 1 desc",
             url : "Story 1 url"
@@ -52,7 +51,7 @@ router.get('/', function(req, res, next) {
         }]
     }
     
-    res.json(responseObject); // sending well formatted dummy for now
+    res.send(responseObject); // sending well formatted dummy for now
     
     
 =======
