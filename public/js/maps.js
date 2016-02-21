@@ -3,8 +3,6 @@ var cities;
 var cityCircle = new Array(35);
 var index = 0;
 var radius = 85000
-var bermudaTriangle;
-var currentOverlay = null
 var map = undefined
 
 function initialize() {
@@ -29,17 +27,18 @@ function initialize() {
     google.maps.event.addDomListener(map, 'zoom_changed', function(f) {
 
         if (map.getZoom() < 5) {
-            for (var r in cityCircle) {
-                cityCircle[r].setVisible(false)
+            for (var z in cityCircle) {
+                cityCircle[z].setMap(null)
+                cityCircle[z] = null
             }
 
             drawFusionLayer('1H1Ee3_2xX7wr25WNRWs3uXyGLzTtjxnDUUMrozWt');
 
         }
         else if (map.getZoom() >= 5) {
+            
             for (var z in cityCircle) {
                 cityCircle[z].setMap(null)
-                cityCircle[z] = null
             }
             drawCircles()
 
