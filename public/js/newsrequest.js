@@ -20,7 +20,7 @@ function getRegionStores(regionID){
 }
 
 function getCityStories(locationName){
-	$.get("/location", {location:locationName}, function(response){
+	$.get("/location/city", {location:locationName}, function(response){
 		clearSidePannel(); 
 		populateSidePannel(response.name);
 	});
