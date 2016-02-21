@@ -22,14 +22,29 @@ router.get('/city', function(req, res, next) {
                 var len = result.body.posts.length;
                 var posts = [];
                 for(var i=1; i<11; i++){
+                    // justin's updates to enforce locations 
+                    // I fucked it up...
+                    if (result.body.posts[len-i].locations[0] !== q) {
+                        console.log("Skipped story\n")
+                        len--; 
+                        i ++; 
+                        continue;
+                    }
+                    // end of new logic
                     var temp = {};
                     temp.title = result.body.posts[len-i].title;
                     temp.url = result.body.posts[len-i].url;
                     posts.push(temp);
                     //console.log(result.body.posts[len-1]);
                 }
-                res.send(posts);
-        	   // console.log(Object.getOwnPropertyNames(result.body))
+                // checks to make sure there is still a story to post
+                if (posts.length == 0){
+                    res.send("No news updates for " + q);
+                }
+                // end Justin's shitty attempts at fixes --> there's a bug in it somewhere, but I'm too tired to try to find it right now
+               // console.log(result.body)
+               res.send(posts);
+        	   //console.log(Object.getOwnPropertyNames(result.body))
         	});
         });
     }
