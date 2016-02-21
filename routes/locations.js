@@ -33,8 +33,7 @@ router.get('/', function(req, res, next) {
         }, etc. etc.]
     }
     */
-    console.log(req.body);
-    
+
     var responseObject = {
         name : [{
             title : "Story 1",
