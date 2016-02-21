@@ -14,27 +14,7 @@ var locations = require('./routes/locations');
 
 var app = express();
 // Justin's api query test!
-app.get('/', function(req, res){
-  var webhose = require('webhose-nodejs');
-  
-    var ops = {
-  	format: 'json',
-  	language: 'english',
-  	thread.country: 'US',
-  	site_type: 'news',
-  	size: 10,		// returns 10 stories
-  	location: 'pittsburgh'
-  }
 
-  try{
-  	webhose.search('pittsburgh', ops, function(err, res) ){
-  		res.send(res.data); 
-  	}
-  } catch (ex) {
-  	console.log(ex);
-  	break;
-  }
-});
 // End of Justin's Shitty TEST
 
 //db config
