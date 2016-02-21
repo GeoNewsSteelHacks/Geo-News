@@ -1,11 +1,20 @@
-function newsRequest(locationName){
-	$.get("/location", {location:locationName}, function(data){
-		for(var i = 0; i < data.name.length; i++){
-			var elementContainer = '<div>' 
-				+ '<h1>' + data.name[i].title + '</h1>'
-				+ '<p>' + data.name[i].description + '</p>' 
-				+ '<a href=' + data.name[i].url + '>' + '</>' + '</div>';
-			$("#panel").append(elementContainer);
-		}
-	});
+function populateSidePannel(locationStories){
+	for(var i = 0; i < locationStories.length; i++){
+		var elementContainer = '<div>' 
+			+ '<h1>' + locationStories[i].title + '</h1>'
+			+ '<p>' + locationStories[i].description + '</p>' 
+			+ '<a href=' + locationStories[i].url + '>'+ locationStories[i].url.toString() + '</>' + '</div>';
+		$("#panel").append(elementContainer);
+	}
+}
+
+function clearSidePannel(){
+	$("#panel").html("");
+}
+
+function getLocationStories(locationName){
+	$.get("/location", {location:locationName}, function(response){
+		clearSidePannel();
+		populateSidePannel(response.name);
+	})
 }
