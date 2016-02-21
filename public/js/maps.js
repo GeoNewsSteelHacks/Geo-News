@@ -4,6 +4,7 @@ var cityCircle = new Array(35);
 var index = 0;
 var radius = 85000
 var map = undefined
+var geocoder;
 
 function initialize() {
 
@@ -22,6 +23,7 @@ function initialize() {
 
     // CREATE THE MAP
     map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
 
     // DRAW THE CIRCLES FOR CITIES
     drawCircles();
@@ -95,6 +97,8 @@ function drawCircles() {
             })
             // event handler for click
         google.maps.event.addListener(cityCircle[index], 'click', function(t) {
+            var latlng = this.getCenter();
+            getCity(latlng);
             $(document).ready(function() {
                 getCityStories('string');
             });
@@ -147,7 +151,7 @@ function drawFusionLayer(fusionTable) {
 
         }],
 
-        suppressInfoWindows : true
+        //suppressInfoWindows : true
     });
     layer.setMap(map);
     currentOverlay = map;
@@ -159,6 +163,21 @@ function drawFusionLayer(fusionTable) {
     google.maps.event.addListener(layer, 'click', function(z) {
         var geoID = z.row['GEOID'].value;   
         getRegionStories(geoID);
+    });
+}
+
+function getCity(latlng){
+    
+    geocoder = new google.maps.Geocoder();
+    
+    geocoder.geocode({'latLng': latlng}, function(results, status){
+        
+        if(status === google.maps.GeocoderStatus.OK){
+            if(results[1]){
+                alert(results[2].formattedAddress)
+            }
+            
+        }
     });
 }
 
