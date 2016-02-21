@@ -61,7 +61,7 @@ function initialize() {
 
 function drawCircles() {
     cities = cityCenters();
-
+    var openInfoBox = false;
 
     for (var city in cities) {
         // Add the circle for this city to the map.
@@ -78,12 +78,19 @@ function drawCircles() {
 
         // event handler for hover
         google.maps.event.addListener(cityCircle[index], 'mouseover', function(e) {
+            if(openInfoBox == true){
+                var id = $(openInfoBox.getContent()).attr('id');
+                if ($('#' + id + ':hover').length) {
+                    return false; 
+                }
+            }
             infoWindow.setPosition(e.latLng);
             infoWindow.open(map);
+            openInfoBox = true;
         });
         google.maps.event.addListener(cityCircle[index], 'mouseout', function(e) {
-
                 infoWindow.close(map);
+                openInfoBox = false;
             })
             // event handler for click
         google.maps.event.addListener(cityCircle[index], 'click', function(t) {
