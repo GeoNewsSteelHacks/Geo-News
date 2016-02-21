@@ -150,7 +150,8 @@ function drawFusionLayer(fusionTable) {
             polygonOptions: {
                 fillColor: '#4B0082'
             }
-        }]
+        }],
+        suppressInfoWindows : true
     });
     layer.setMap(map);
     currentOverlay = map;
