@@ -1,7 +1,7 @@
 function populateSidePannel(locationStories){
 	for(var i = 0; i < locationStories.length; i++){
-		var elementContainer = '<div class="storybox">' 
-			+ '<a href=' + locationStories[i].url + '>' + locationStories[i].title + '</a>'
+		var elementContainer = "<div class='storybox'>"
+			+ "<a href=" + locationStories[i].url + " target='blank'>" + locationStories[i].title + "</a>";
 			//+ '<p>' + locationStories[i].description + '</p>' 
 			//+ '<a href=' + locationStories[i].url + '>Click here for more!</>' + '</div>';
 		$("#panel").append(elementContainer);
