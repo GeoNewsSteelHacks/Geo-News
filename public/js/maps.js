@@ -96,7 +96,8 @@ function drawCircles() {
         google.maps.event.addListener(cityCircle[index], 'click', function(t) {
             $(document).ready(function() {
 
-                $("#panel").text("Hello world!");
+                alert(Object.getOwnPropertyNames(t));
+                alert(t.Ra);
 
 
             });
@@ -145,20 +146,23 @@ function drawFusionLayer(fusionTable) {
             polygonOptions: {
                 fillColor: '#0000FF'
             }
-        }]
+
+        }],
+
+        suppressInfoWindows : true
     });
     layer.setMap(map);
     currentOverlay = map;
     google.maps.event.addListener(map, 'zoom_changed', function() {
         if (map.getZoom() >= 5) {
-            layer.setMap(null)
+            layer.setMap(null);
         }
     });
     google.maps.event.addListener(layer, 'click', function(z) {
         
             var test = z.row['GEOID'].value;   
             alert(test)
-    });
+
 
 }
 
