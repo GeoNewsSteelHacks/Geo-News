@@ -6,6 +6,8 @@ var radius = 85000
 var map = undefined
 var geocoder;
 
+var activeInfoBox;
+
 function initialize() {
 
     // SET DEFAULT MAP OPTIONS
@@ -75,6 +77,7 @@ function drawCircles() {
         });
 
         // event handler for hover
+        
         google.maps.event.addListener(cityCircle[index], 'mouseover', function(e) {
             if(openInfoBox == true){
                 var id = $(openInfoBox.getContent()).attr('id');
@@ -82,15 +85,23 @@ function drawCircles() {
                     return false; 
                 }
             }
+            
+            var infoWindow = new google.maps.InfoWindow({
+                content: "<div><p>Click to see news from " + this.name + "</p></div>",
+                maxWidth: 500
+            });
+            
             infoWindow.setPosition(e.latLng);
-            infoWindow.open(map);
+            activeInfoBox = infoWindow;
+            activeInfoBox.open(map);
             openInfoBox = true;
         });
         google.maps.event.addListener(cityCircle[index], 'mouseout', function(e) {
-                infoWindow.close(map);
+                activeInfoBox.close(map);
                 openInfoBox = false;
-            })
-            // event handler for click
+        });
+            
+        // event handler for click
         google.maps.event.addListener(cityCircle[index], 'click', function(t) {
             $("#panelHead").text(this.name);
             getCityStories(this.name);
@@ -98,11 +109,7 @@ function drawCircles() {
         index++;
     }
 
-    var infoWindow = new google.maps.InfoWindow({
-
-        content: "<div>Click to see news from this region!</div>",
-        maxWidth: 500
-    });
+    
 
 
 }
