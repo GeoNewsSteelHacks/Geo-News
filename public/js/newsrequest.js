@@ -16,29 +16,31 @@ function getRegionStories(regionID){
 	clearSidePannel();
 	$('#panelHead').text('Regional Stories : Region ' + regionID);
 	$('#panel').text('loading...');
+	
 	$.ajax({
-    type: 'GET',
-    url: '/location/region',
-    data: {
-    	region : regionID},
-    success: function(data) {
-	        clearSidePannel();
-	        populateSidePannel(data);
-	    }
+	    type: 'GET',
+	    url: '/location/region',
+	    data: {
+	    	region : regionID},
+	    success: function(data) {
+		        clearSidePannel();
+		        populateSidePannel(data);
+			}
 	});
 }
 
 function getCityStories(locationName){
 	clearSidePannel();
 	$('#panel').text('loading...');
+
 	$.ajax({
-    type: 'GET',
-    url: '/location/city',
-    data: {
-    	location : locationName},
-    success: function(data) {
-	        clearSidePannel();
-	        populateSidePannel(data);
-	    }
+	    type: 'GET',
+	    url: '/location/city',
+	    data: {
+	    	location : locationName},
+	    success: function(data) {
+		        clearSidePannel();
+		        populateSidePannel(data);
+		    }
 	});
 }

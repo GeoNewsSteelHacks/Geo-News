@@ -6,37 +6,65 @@ var unirest = require('unirest');
 
 /* GET home page. */
 router.get('/city', function(req, res, next) {
+    
+    console.log("\nCity Request : " + req.query.location);
+    
+    
     var q = req.query.location;
     var baseURL = "https://webhose.io";
-    var request = unirest.get(baseURL + "/search?token=3903271a-d7b5-4221-90c7-bc68fc7d1cb2&format=json&q=" + q + "%20language%3A(english)%20thread.country%3AUS%20(site_type%3Anews)");
-	// limit size, get most recent              // testing addition: '%20size%3A%3E10'
+    
+    var yesterdayTS = new Date().getTime() - 86400000;
+    
+    var request = unirest.get(baseURL + "/search?token=3903271a-d7b5-4221-90c7-bc68fc7d1cb2&format=json&q=" + q + "%20language%3A(english)%20thread.country%3AUS%20(site_type%3Anews)&ts=" + yesterdayTS);
     request.header("Accept", "text/plain");
+
     try {
         request.end(function (result) {
-            //console.log(result.body);
-        	
-        	request = unirest.get(baseURL + result.body.next);
-        	request.header("Accept", "text/plain");
-        	
-        	request.end(function(result){
-                var len = result.body.posts.length;
-                var posts = [];
-                for(var i=1; i<11; i++){
-                    var temp = {};
-                    temp.title = result.body.posts[len-i].title;
-                    temp.url = result.body.posts[len-i].url;
-                    posts.push(temp);
-                    //console.log(result.body.posts[len-1]);
-                }
-                res.send(posts);
-        	   // console.log(Object.getOwnPropertyNames(result.body))
-        	});
+            var posts = packagePosts(result.body.posts);
+            
+            res.send(posts);
+    	});
+    }
+    catch(e){
+        console.log(e);
+    }
+});
+
+router.get('/region', function(req, res, next) {
+    
+    console.log("\nRegion Request : " + req.query.region);
+
+    var q = getRegionQueryString(req.query.region);
+    
+    var baseURL = "https://webhose.io";
+    
+    var yesterdayTS = new Date().getTime() - 86400000;
+    
+    var request = unirest.get(baseURL + "/search?token=3903271a-d7b5-4221-90c7-bc68fc7d1cb2&format=json&q=" + q + "%20language%3A(english)%20thread.country%3AUS%20(site_type%3Anews)&ts=" + yesterdayTS);
+    request.header("Accept", "text/plain");
+    
+    try {
+        request.end(function (result) {
+            var posts = packagePosts(result.body.posts);
+            
+            res.send(posts);
         });
     }
     catch(e){
         console.log(e);
     }
 });
+
+function packagePosts(posts){
+    var ret = [];
+    for(var i = posts.length - 1; i > posts.length - 10; i--){
+        var temp = {};
+        temp.title = posts[i].title;
+        temp.url = posts[i].url;
+        ret.push(temp);
+    }
+    return ret;
+}
 
 function getRegionQueryString(regionID){
     var regionDictionary = {
@@ -52,36 +80,5 @@ function getRegionQueryString(regionID){
     };
     return regionDictionary[regionID];
 }
-
-
-router.get('/region', function(req, res, next) {
-
-    var q = getRegionQueryString(req.query.region);
-    
-    var baseURL = "https://webhose.io";
-    var request = unirest.get(baseURL + "/search?token=3903271a-d7b5-4221-90c7-bc68fc7d1cb2&format=json&q=" + q + "%20language%3A(english)%20thread.country%3AUS%20(site_type%3Anews)");
-	// limit size, get most recent              // testing addition: '%20size%3A%3E10'
-    request.header("Accept", "text/plain");	
-    request.end(function (result) {
-        //console.log(result.body);
-    	/*
-    	request = unirest.get(baseURL + result.body.next);
-    	request.header("Accept", "text/plain");
-    	
-    	request.end(function(result){*/
-            var len = result.body.posts.length;
-            var posts = [];
-            for(var i=1; i<11; i++){
-                var temp = {};
-                temp.title = result.body.posts[len-i].title;
-                temp.url = result.body.posts[len-i].url;
-                posts.push(temp);
-                //console.log(result.body.posts[len-1]);
-            }
-            res.send(posts);
-    	   // console.log(Object.getOwnPropertyNames(result.body))
-    	//});
-    });
-});
 
 module.exports = router;
